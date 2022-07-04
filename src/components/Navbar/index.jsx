@@ -1,40 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Navbar, Nav, Offcanvas } from "react-bootstrap";
 import Container from "react-bootstrap/esm/Container";
-import { logIn, logOut, writePost, getPosts } from "../../service/firebase";
+import { LinkContainer } from "react-router-bootstrap";
+import { auth, logIn, logOut } from "../../service/firebase";
 
 const NavbarComponent = () => {
-  const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
 
-  const handleLogIn = () => {
-    logIn()
-      .then((result) => {
-        setUser(result.user);
-        console.log(result);
-      })
-      .catch((error) => console.log(error));
-  };
+  const toggleOffCanvas = () => setShow((show) => !show);
 
-  const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        setUser(null);
-      })
-      .catch((error) => console.log(error));
+  const handleLogout = () => {
+    logOut();
+    toggleOffCanvas();
   };
 
   return (
     <Navbar sticky="top" bg="light" expand="md" className="shadow bg-white">
       <Container>
         <Navbar.Brand>Icys Blog</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">some links</Nav>
-        </Navbar.Collapse>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={toggleOffCanvas}
+        />
+        <Navbar.Offcanvas
+          id="responsive-navbar-nav"
+          placement="end"
+          show={show}
+          onHide={toggleOffCanvas}
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Icys Blog</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <LinkContainer to="/dashboard">
+                <Nav.Link onClick={toggleOffCanvas}>LinkedIn</Nav.Link>
+              </LinkContainer>
+            </Nav>
+            <button onClick={logIn}>Log in</button>
+            <button onClick={handleLogout}>Log out</button>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
       </Container>
-      {!user && <button onClick={handleLogIn}>Log in</button>}
-      {user && <p>{user.displayName}</p>}
-      {user && <button onClick={handleLogOut}>Log out</button>}
     </Navbar>
   );
 };
