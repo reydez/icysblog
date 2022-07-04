@@ -1,15 +1,13 @@
 import React from "react";
-import Container from "react-bootstrap/esm/Container";
 import { contactList } from "../utils/helpers";
 
 const Footer = () => {
-  console.log(contactList);
   return (
-    <Container
-      className="m-0 p-0"
+    <footer
       style={{
         maxWidth: "100%",
-        height: "70px",
+        height: "200px",
+        padding: "2rem",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -37,7 +35,7 @@ const Footer = () => {
           );
         })}
       </div>
-    </Container>
+    </footer>
   );
 };
 

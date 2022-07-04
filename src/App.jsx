@@ -4,10 +4,22 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Footer from "./components/Footer";
+import { db } from "./service/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [posts, setPosts] = useState(null);
+  const postsRef = collection(db, "posts");
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const data = await getDocs(postsRef);
+      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    fetchPosts();
+  }, []);
+  console.log(posts);
   return (
     <>
       <NavbarComponent />
@@ -15,7 +27,7 @@ function App() {
         className="m-0 p-0"
         style={{
           maxWidth: "100%",
-          height: "calc(100vh - 70px - 56px)",
+          minHeight: "100%",
           overflow: "auto",
           display: "flex",
           justifyContent: "space-evenly",
@@ -36,6 +48,7 @@ function App() {
           >
             {new Array(10).fill("item").map((item, idx) => (
               <div
+                key={idx}
                 style={{
                   width: "100%",
                   height: "300px",
