@@ -44,6 +44,44 @@ const NavbarComponent = () => {
             </LinkContainer>
           </Offcanvas.Header>
           <Offcanvas.Body>
+            {currentUser ? (
+              <div className="d-sm-block d-md-none">
+                <div className="border rounded text-dark right-side-container">
+                  <div>
+                    <span>You are logged in</span>
+                  </div>
+                  <div className="right-side-container-header">
+                    <img src={currentUser.photoURL} alt="" />
+                  </div>
+                  <div className="right-side-container-body">
+                    {currentUser.displayName}
+                  </div>
+                  <div className="right-side-container-footer">
+                    {currentUser.email}
+                  </div>
+                  <div className="right-side-container-log-btn">
+                    <button className="btn btn-danger" onClick={handleLogout}>
+                      Log out
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="d-sm-block d-md-none">
+                <div className="border rounded text-dark right-side-container">
+                  <div className="right-side-container-body">
+                    <span>
+                      You have to log in if you want to make a discussion!
+                    </span>
+                  </div>
+                  <div className="right-side-container-log-btn">
+                    <button className="btn btn-primary" onClick={handleLogin}>
+                      Log in
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <LinkContainer to="/dashboard">
                 <Nav.Link onClick={toggleOffCanvas}>Dashboard</Nav.Link>
@@ -52,11 +90,6 @@ const NavbarComponent = () => {
                 <Nav.Link onClick={toggleOffCanvas}>Create discussion</Nav.Link>
               </LinkContainer>
             </Nav>
-            {currentUser ? (
-              <button onClick={handleLogout}>Log out</button>
-            ) : (
-              <button onClick={handleLogin}>Log in</button>
-            )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

@@ -30,15 +30,15 @@ const RenderDiscussions = () => {
 
   const renderDiscussions = discussions.map((item, idx) => (
     <div
-      className="w-100 h-100 p-3 border bg-white shadow-sm rounded card-container"
+      className="w-100 h-100 border bg-white shadow-sm rounded card-container"
       style={{ height: "100px" }}
       key={idx}
     >
-      <div className="img-container border shadow-sm p-2">
+      <div className="img-container p-2">
         <img className="border shadow-sm" src={item.userPhoto} />
         <span className="text-center">{item.name}</span>
       </div>
-      <div className="card-container-body border p-2 rounded shadow-sm">
+      <div className="card-container-body px-2">
         <div className="title">
           <p>Title</p>
           <h3>{truncateString(item.title, 50)}</h3>
@@ -48,11 +48,19 @@ const RenderDiscussions = () => {
             {item.selectedTags &&
               item.selectedTags.map((tag) => (
                 <li key={tag}>
-                  <div className="tag-badge">{tag}</div>
+                  <div className="tag-badge border px-3 rounded-pill border-primary shadow-sm">
+                    {tag}
+                  </div>
                 </li>
               ))}
           </ul>
         </div>
+      </div>
+      <div className="card-container-footer p-2">
+        <i class="fa-regular fa-thumbs-up"></i>
+        <span>like</span>
+        <i class="fa-solid fa-thumbs-up"></i>
+        <span>Todavia no esta!!</span>
         <div className="go-detail">
           <span className="icon mx-2">
             <OverlayTrigger
@@ -68,12 +76,6 @@ const RenderDiscussions = () => {
             </OverlayTrigger>
           </span>
         </div>
-      </div>
-      <div className="card-container-footer border shadow-sm">
-        <i class="fa-regular fa-thumbs-up"></i>
-        <span>like</span>
-        <i class="fa-solid fa-thumbs-up"></i>
-        <span>Todavia no esta!!</span>
       </div>
     </div>
   ));
