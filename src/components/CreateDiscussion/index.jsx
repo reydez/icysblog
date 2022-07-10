@@ -70,7 +70,7 @@ const CreateDiscussion = () => {
         onSubmit={handleRegisterDiscussion}
       >
         <Form.Group className="mb-3">
-          <Form.Label>Titulo</Form.Label>
+          <Form.Label>Title</Form.Label>
           <Form.Control
             value={title}
             onChange={(e) => setTitle(e.target.value)}
