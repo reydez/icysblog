@@ -82,14 +82,38 @@ const NavbarComponent = () => {
                 </div>
               </div>
             )}
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              <LinkContainer to="/dashboard">
-                <Nav.Link onClick={toggleOffCanvas}>Dashboard</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/create-discussion">
-                <Nav.Link onClick={toggleOffCanvas}>Create discussion</Nav.Link>
-              </LinkContainer>
-            </Nav>
+            <div className="d-none d-md-flex justify-content-end flex-grow-1 pe-3">
+              <Nav>
+                <LinkContainer to="/dashboard" className="">
+                  <Nav.Link onClick={toggleOffCanvas}>Dashboard</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/create-discussion">
+                  <Nav.Link onClick={toggleOffCanvas}>
+                    Create discussion
+                  </Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </div>
+            <div className="d-sm-flex d-md-none justify-content-center ">
+              <Nav>
+                <LinkContainer to="/dashboard" className="">
+                  <Nav.Link
+                    className="btn btn-primary text-light flex-grow-1 mt-2 py-1 px-2"
+                    onClick={toggleOffCanvas}
+                  >
+                    Dashboard
+                  </Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/create-discussion">
+                  <Nav.Link
+                    className="btn btn-primary text-light mt-2 py-1 px-2"
+                    onClick={toggleOffCanvas}
+                  >
+                    Create discussion
+                  </Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
