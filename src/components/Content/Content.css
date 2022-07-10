@@ -28,8 +28,9 @@
   flex-direction: column;
   gap: 10px;
   flex: 5;
-  min-width: 325px;
   height: 100%;
+  width: 100%;
+  min-width: 325px;
   position: relative;
 }
 
