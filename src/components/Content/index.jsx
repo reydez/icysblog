@@ -5,6 +5,9 @@ import RenderDiscussions from "./RenderDiscussions";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import { logIn, logOut } from "../../service/firebase";
+import { OverlayTrigger } from "react-bootstrap";
+import Tooltip from "react-bootstrap/Tooltip";
+import { Link } from "react-router-dom";
 
 function Content() {
   const { currentUser } = useContext(UserContext);
@@ -54,6 +57,19 @@ function Content() {
               <button className="btn btn-danger" onClick={handleLogout}>
                 Log out
               </button>
+            </div>
+            <div className="go-detail">
+              <span className="icon mx-2">
+                <OverlayTrigger
+                  key="top"
+                  placement="top"
+                  overlay={<Tooltip id="tooltip-top">Go to Dashboard</Tooltip>}
+                >
+                  <Link to={`/dashboard`} role="button">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </Link>
+                </OverlayTrigger>
+              </span>
             </div>
           </div>
         ) : (

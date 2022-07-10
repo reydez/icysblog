@@ -30,7 +30,7 @@ const RenderDiscussions = () => {
 
   const renderDiscussions = discussions.map((item, idx) => (
     <div
-      className="w-100 h-100 border bg-white shadow-sm rounded card-container"
+      className="w-100 h-100 border bg-white shadow-sm rounded position-relative card-container"
       style={{ height: "100px" }}
       key={idx}
     >
@@ -61,21 +61,21 @@ const RenderDiscussions = () => {
         <span>like</span>
         <i class="fa-solid fa-thumbs-up"></i>
         <span>Todavia no esta!!</span>
-        <div className="go-detail">
-          <span className="icon mx-2">
-            <OverlayTrigger
-              key="top"
-              placement="top"
-              overlay={
-                <Tooltip id="tooltip-top">Go to discussion details</Tooltip>
-              }
-            >
-              <Link to={`/discussion/${item.id}`} role="button">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </Link>
-            </OverlayTrigger>
-          </span>
-        </div>
+      </div>
+      <div className="go-detail">
+        <span className="icon mx-2">
+          <OverlayTrigger
+            key="top"
+            placement="top"
+            overlay={
+              <Tooltip id="tooltip-top">Go to discussion details</Tooltip>
+            }
+          >
+            <Link to={`/discussion/${item.id}`} role="button">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </Link>
+          </OverlayTrigger>
+        </span>
       </div>
     </div>
   ));

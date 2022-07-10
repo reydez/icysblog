@@ -112,6 +112,7 @@
   width: 20%;
   margin-right: 0.5em;
   padding: 0;
+  position: relative;
 }
 
 .right-side-container {
@@ -136,6 +137,12 @@
 
 .right-side-container-log-btn button {
   width: 100%;
+}
+
+.navbar-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
 }
 
 @media (max-width: 576px) {
