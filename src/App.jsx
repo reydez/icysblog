@@ -1,28 +1,22 @@
 import { useEffect, useState } from "react";
 import NavbarComponent from "./components/Navbar";
 import Footer from "./components/Footer";
-import { auth, db, redirectResult } from "./service/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { Route, Routes } from "react-router-dom";
+import { redirectResult } from "./service/firebase";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Content from "./components/Content";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import CreateDiscussion from "./components/CreateDiscussion";
+import DiscussionDetail from "./components/DiscussionDetail";
 
 function App() {
-  /*const [posts, setPosts] = useState(null);
-  const postsRef = collection(db, "posts");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await getDocs(postsRef);
-      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const getRedirectResult = async () => {
+      await redirectResult();
     };
-
-    fetchPosts();
-  }, []);*/
-
-  useEffect(() => {
-    redirectResult();
+    getRedirectResult();
   }, []);
 
   return (
@@ -30,12 +24,20 @@ function App() {
       <NavbarComponent />
       <Routes>
         <Route exact path="/" element={<Content />} />
-        <Route path="/post/:id" element={<h1>post details</h1>} />
+        <Route path="/discussion/:id" element={<DiscussionDetail />} />
         <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create-discussion"
+          element={
+            <PrivateRoute>
+              <CreateDiscussion />
             </PrivateRoute>
           }
         />

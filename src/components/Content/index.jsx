@@ -1,57 +1,33 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./index.css";
+import RenderDiscussions from "./RenderDiscussions";
 
 function Content() {
   return (
-    <div className="content">
+    <div className="content w-100 mw-100 h-100 d-flex my-4">
       <Row className="m-0 p-0" style={{ width: "100%" }}>
         <Col
           md={6}
           lg={7}
+          className="d-flex justify-content-center flex-column flex-grow-1 w-100"
           style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            flex: 1,
-            gap: "20px",
+            gap: "15px",
           }}
         >
-          {new Array(5).fill("item").map((item, idx) => (
-            <div
-              key={idx}
-              style={{
-                width: "100%",
-                height: "300px",
-                background: "red",
-                borderRadius: "20px",
-                padding: "1em",
-                boxShadow: "0px .8rem 1rem rgba(50, 50, 50, 0.45)",
-              }}
-            >{`${item} - ${idx + 1}`}</div>
-          ))}
-        </Col>
-        <Col
-          className="d-none d-md-block"
-          md={6}
-          lg={5}
-          style={{
-            flex: 0.5,
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "50%",
-              background: "yellow",
-            }}
-          >
-            Some stuff
-          </div>
+          {<RenderDiscussions />}
         </Col>
       </Row>
+      <div
+        className="d-none d-md-block w-25 mw-25"
+        style={{ minWidth: "100px" }}
+        md={6}
+        lg={5}
+      >
+        <div className="w-100 h-100 rounded p-3 bg-warning text-dark">
+          Log in to create discussion or see dashboard
+        </div>
+      </div>
     </div>
   );
 }

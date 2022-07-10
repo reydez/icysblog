@@ -1,9 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 import { UserContext } from "../../providers/UserProvider";
 
 const Dashboard = () => {
   const { currentUser } = useContext(UserContext);
+
+  if (!currentUser) {
+    return (
+      <div className="w-100 h-100 d-flex my-5 justify-content-center align-items-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
 
   return (
     <div>

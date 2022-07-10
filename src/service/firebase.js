@@ -37,6 +37,11 @@ export const logIn = async () => await signInWithRedirect(auth, provider);
 export const redirectResult = async () => {
   try {
     const res = await getRedirectResult(auth);
+
+    if (!res) {
+      return;
+    }
+
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
@@ -52,6 +57,35 @@ export const redirectResult = async () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getTags = async () => {
+  const tags = [];
+
+  const q = query(collection(db, "tags"));
+  const docs = await getDocs(q);
+  docs.forEach((doc) => {
+    tags.push({ ...doc.data(), id: doc.id });
+  });
+
+  return tags;
+};
+
+export const getDiscussions = async () => {
+  const discussions = [];
+
+  const q = query(collection(db, "discussions"));
+  const docs = await getDocs(q);
+  docs.forEach((doc) => {
+    discussions.push({ ...doc.data(), id: doc.id });
+  });
+
+  return discussions;
+};
+
+export const registerDiscussion = async (body) => {
+  const docRef = await addDoc(collection(db, "discussions"), body);
+  return docRef;
 };
 
 export const logOut = async () => {

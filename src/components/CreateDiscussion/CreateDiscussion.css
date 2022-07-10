@@ -1,0 +1,19 @@
+.badge::after {
+  content: "x";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.create-container {
+  max-width: 500px;
+  min-width: 390px;
+}
