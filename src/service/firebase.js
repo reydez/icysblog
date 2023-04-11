@@ -13,6 +13,7 @@ import {
   collection,
   where,
   addDoc,
+  doc,
 } from "@firebase/firestore";
 
 const firebaseConfig = {
@@ -86,6 +87,27 @@ export const getDiscussions = async () => {
 export const registerDiscussion = async (body) => {
   const docRef = await addDoc(collection(db, "discussions"), body);
   return docRef;
+};
+
+export const getUserDescussions = async (userId) => {
+  try {
+    const userDiscussions = [];
+    const q = query(
+      collection(db, "discussions"),
+      where("userId", "==", userId)
+    );
+    const docs = await getDocs(q);
+
+    if (docs.docs.length !== 0) {
+      docs.docs.forEach((doc) => {
+        userDiscussions.push({ id: doc.id, ...doc.data() });
+      });
+    }
+
+    return userDiscussions;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const logOut = async () => {

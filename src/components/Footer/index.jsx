@@ -12,13 +12,18 @@ const Footer = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: "10px",
+          gap: "25px",
         }}
       >
         {contactList.map((contact) => {
           return (
-            <a href={contact.url} target="_blank" key={contact.url}>
-              {contact.name}
+            <a
+              href={contact.url}
+              style={{ color: contact.color }}
+              target="_blank"
+              key={contact.url}
+            >
+              {contact.icon}
             </a>
           );
         })}

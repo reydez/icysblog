@@ -12,8 +12,6 @@ const NavbarComponent = () => {
   const [show, setShow] = useState(false);
   const { currentUser } = useContext(UserContext);
 
-  console.log(currentUser);
-
   const toggleOffCanvas = () => setShow((show) => !show);
 
   const handleLogout = () => {

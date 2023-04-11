@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Spinner } from "react-bootstrap";
 import { UserContext } from "../../providers/UserProvider";
+import RenderUserDescussions from "./RenderUserDescussions";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const { currentUser } = useContext(UserContext);
@@ -16,17 +18,11 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <h3>{currentUser?.uid}</h3>
-      <h3>{currentUser?.displayName}</h3>
-      <h3>{currentUser?.email}</h3>
-      <h3>{currentUser?.phoneNumber}</h3>
-      <h3>{currentUser?.providerId}</h3>
-      <img
-        src={currentUser?.photoURL}
-        width="100px"
-        alt={currentUser?.displayName}
-      />
+    <div className="discussions-container-main">
+      <div className="discussions-container">
+        <h3>Discussions made by you.</h3>
+        <RenderUserDescussions />
+      </div>
     </div>
   );
 };

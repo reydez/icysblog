@@ -1,0 +1,50 @@
+.discussions-container-main {
+  width: 100%;
+  padding: 1em;
+}
+
+.discussions-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.discussions-container h3 {
+  min-width: 365px;
+  text-align: center;
+}
+
+.discussion-user-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  min-width: 365px;
+  overflow: auto;
+  width: 100%;
+}
+
+.discussion-user-container-each {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  grid-gap: 15px;
+  grid-auto-rows: minmax(50px, auto);
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin-top: 5px;
+  text-align: start;
+  padding: 0 20px;
+}
+
+.discussion-user-container-each .options button a {
+  color: white;
+}
+
+@media (max-width: 576px) {
+}

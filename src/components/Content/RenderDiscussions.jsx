@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getDiscussions } from "../../service/firebase";
 import Spinner from "react-bootstrap/Spinner";
 import "./Content.css";
-import { truncateString } from "../../utils";
 import { OverlayTrigger } from "react-bootstrap";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Link } from "react-router-dom";
+import { truncateString } from "../utils/helpers";
 
 const RenderDiscussions = () => {
   const [discussions, setDiscussions] = useState(null);

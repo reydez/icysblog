@@ -37,7 +37,8 @@ const CreateDiscussion = () => {
         name: currentUser.displayName,
         email: currentUser.email,
       })
-        .then(() => {
+        .then((snapshot) => {
+          console.log("este es", snapshot);
           setTitle("");
           setDescription("");
           setSelectedTags([]);
